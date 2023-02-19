@@ -15,6 +15,26 @@ import uuid
 from studentportal.settings import *
 from django.contrib.auth.decorators import login_required
 from sprofile.models import Sprofile
+from django.http import JsonResponse
+from twilio.rest import Client
+import os
+
+def send_message(request):
+      
+      account_sid = "your account sid"
+      auth_token = "your auth token"
+      client = Client(account_sid, auth_token)
+      message = client.messages.create(
+      body="Your Scholarship will be expiry in 28 days",
+      from_="your twilio number",
+      to="your number"
+      )
+      print(message.sid)
+
+      return JsonResponse({'success':True})
+    
+
+
 
 def griffin_s(request):
     return render(request,"Griffiths.html")
@@ -144,9 +164,9 @@ from django.shortcuts import render
 import requests
 
 def generate_essay(request):
-    api_key = "write your api key here"
+    api_key = "enter your api key"
     model = "text-davinci-002"
-    prompt = "write me an application letter for parul university in 1000 words"
+    prompt = "write me a proper application letter of 1000 for taking an admission in that university"
 
     response = requests.post(
         "https://api.openai.com/v1/completions",
@@ -158,11 +178,12 @@ def generate_essay(request):
             "model": "text-davinci-002",
             "prompt": prompt,
             "temperature": 0.5,
-            "max_tokens": 2048,
+            "max_tokens": 4000,
         },
     )
+    
 
-    essay = response.json()
+    essay = response.json()["choices"][0]["text"]
     return render(request, "application.html", {"essay": essay})
 
 

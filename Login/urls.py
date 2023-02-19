@@ -39,6 +39,7 @@ urlpatterns = [
     path('bits_s',views.bits_s,name='bits_s'),
     path('ottawa_s',views.ottawa_s,name='ottawa_s'),
     path('interview',views.interview,name='interview'),
+     path('send_message/', views.send_message, name='send_message'),
   
      
 ]

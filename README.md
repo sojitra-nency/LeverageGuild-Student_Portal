@@ -72,3 +72,19 @@ def generate_essay(request):
     essay = response.json()
     return render(request, "application.html", {"essay": essay})
 ```	
+
+```bash
+def send_message(request):
+      
+      account_sid = "your account sid"
+      auth_token = "your auth token"
+      client = Client(account_sid, auth_token)
+      message = client.messages.create(
+      body="Your Scholarship will be expiry in 28 days",
+      from_="your twilio number",
+      to="your number"
+      )
+      print(message.sid)
+
+      return JsonResponse({'success':True})
+```

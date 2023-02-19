@@ -73,9 +73,9 @@ def au(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,gate_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
         return redirect('Login:Login') 
     
@@ -96,11 +96,11 @@ def bits(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, gate_score, lor, research_experience, work_experience, course, university]])
-    
-        # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        losing_chance = 100 - result
+            # Render the result on the HTML template
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
-        return redirect('Login:Login')   
+        return redirect('Login:Login')  
 
 
 def gu(request): 
@@ -119,9 +119,9 @@ def gu(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
         return redirect('Login:Login')  
     
@@ -143,11 +143,11 @@ def iis(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,gate_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
-        return redirect('Login:Login')      
+        return redirect('Login:Login')     
 
 def pu(request): 
     if request.user.is_authenticated:
@@ -165,11 +165,11 @@ def pu(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, gate_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
-        return redirect('Login:Login')  
+        return redirect('Login:Login') 
 
 def qmu(request): 
     if request.user.is_authenticated:
@@ -187,12 +187,13 @@ def qmu(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
-        return redirect('Login:Login')  
-
+        return redirect('Login:Login') 
+    
+    
 def su(request): 
     if request.user.is_authenticated:
         cgpa = float(Sprofile.objects.get(user=request.user).current_gpa)
@@ -210,11 +211,11 @@ def su(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,gre_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
-        return redirect('Login:Login')  
+        return redirect('Login:Login') 
 
 def uoo(request): 
     if request.user.is_authenticated:
@@ -233,11 +234,11 @@ def uoo(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,gre_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
-        return redirect('Login:Login')  
+        return redirect('Login:Login') 
 
 
 def uiuc(request): 
@@ -257,9 +258,9 @@ def uiuc(request):
         
         # Use the model to make a prediction
         result = loaded_model.predict([[cgpa, ilets_score,gre_score,lor, research_experience, work_experience, course, university]])
-    
+        losing_chance = 100 - result
         # Render the result on the HTML template
-        return render(request, "predict.html", {"result": result}) 
+        return render(request, "predict.html", {"result": result,'losing_chance': losing_chance}) 
     else:
         return redirect('Login:Login')  
 

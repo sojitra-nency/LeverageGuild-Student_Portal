@@ -12,6 +12,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://kit.fontawesome.com/4378b71530.css" crossorigin="anonymous">
     <title>Student Portal</title>
+    <style>
+      #myChart
+      {
+        width: 500px !important;
+        height: 500px !important;
+        margin-left:500px;
+      }
+
+      </style>
+    
   </head>
   <body>
     <!-- navigationbar -->
@@ -64,8 +74,58 @@
     
     <!-- navigationbar -->
    
-      <h1>Prediction{{result}}</h1>
-   
+<center><h1>Prediction{{result}}</h1></center><br><br>
+
+    <canvas id="myChart" width="100" height="100"></canvas>
+    <script>
+    var canvas = document.getElementById('myChart')[0];
+    canvas.width  = 800;
+    canvas.height = 600;
+    
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const data = {
+        labels: [
+          'Chances of Getting Admission',
+          '',
+        ],
+        datasets: [{
+          data: [{{result}}, {{losing_chance}}],
+          backgroundColor: [
+            'lightgreen',
+            'red',
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 99, 132, 1)',
+          ],
+          borderWidth: 1
+        }]
+      };
+    
+      const options = {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Predicted Chances',
+          }
+        },
+      };
+ 
+      const chart = new Chart(document.getElementById('myChart'), {
+        type: 'pie',
+        data: data,
+        options: options
+      });
+    </script>
+    
+    
 
 
     
@@ -217,7 +277,9 @@
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://kit.fontawesome.com/4378b71530.js" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-     
+     <script>
+       
+      </script>
     </body>
   </html>
 
